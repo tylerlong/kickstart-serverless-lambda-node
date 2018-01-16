@@ -1,0 +1,31 @@
+{
+  "name": "{{ projectName }}",
+  "version": "{{ version }}",
+  "description": "{{ description }}",
+  "private": true,
+  "license": "{{ license }}",
+  "scripts": {
+    "upgrade": "yarn-upgrade-all",
+    "build": "webpack --progress --colors",
+    "build:watch": "yarn build --watch",
+    "release": "yarn build -p",
+    "info": "cd {{ serviceName }} && serverless info",
+    "log": "cd {{ serviceName }} && serverless -f {{ functionName }} logs",
+    "log:stream": "yarn log -t",
+    "remove": "cd {{ serviceName }} && serverless remove",
+    "deploy:full": "yarn build && cd {{ serviceName }} && serverless deploy",
+    "deploy:full:prod": "yarn release && cd {{ serviceName }} && serverless deploy --stage prod",
+    "deploy": "yarn deploy:full function -f {{ functionName }}"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "serverless": "^1.25.0",
+    "standard": "^10.0.3",
+    "webpack": "^3.10.0",
+    "yarn-upgrade-all": "^0.3.0"
+  }
+}

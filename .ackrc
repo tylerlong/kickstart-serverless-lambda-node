@@ -1,0 +1,3 @@
+--ignore-dir=.serverless
+--ignore-file=match:/^yarn\.lock$/
+--ignore-file=match:/^handler\.js$/
