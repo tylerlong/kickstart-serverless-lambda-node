@@ -6,6 +6,7 @@ provider:
     region: us-east-1
     memorySize: 128
     timeout: 16
+    environment: ${file(./env.yml):${self:provider.stage}}
 package:
     exclude:
         - '*.js'
@@ -15,10 +16,8 @@ package:
     excludeDevDependencies: false
 functions:
     {{ functionName }}:
-        environment: ${file(./env.yml):${self:provider.stage}}
         handler: handler.{{ functionName }}
         events:
-            -
-                http:
-                    path: {{ httpPath }}
-                    method: {{ httpMethod }}
+            - http:
+                path: {{ httpPath }}
+                method: {{ httpMethod }}
