@@ -1,23 +1,23 @@
 service:
-    name: {{ projectName }}-{{ serviceName }}
+  name: {{ projectName }}-{{ serviceName }}
 provider:
-    name: aws
-    runtime: nodejs6.10
-    region: us-east-1
-    memorySize: 128
-    timeout: 16
-    environment: ${file(./env.yml):${self:provider.stage}}
+  name: aws
+  runtime: nodejs6.10
+  region: us-east-1
+  memorySize: 128
+  timeout: 16
+  environment: ${file(./env.yml):${self:provider.stage}}
 package:
-    exclude:
-        - '*.js'
-        - '*.yml'
-    include:
-        - handler.js
-    excludeDevDependencies: false
+  exclude:
+    - '*.js'
+    - '*.yml'
+  include:
+    - handler.js
+  excludeDevDependencies: false
 functions:
-    {{ functionName }}:
-        handler: handler.{{ functionName }}
-        events:
-            - http:
-                path: {{ httpPath }}
-                method: {{ httpMethod }}
+  {{ functionName }}:
+    handler: handler.{{ functionName }}
+    events:
+      - http:
+          path: {{ httpPath }}
+          method: {{ httpMethod }}
